@@ -4,9 +4,10 @@ public class SearchAlgos {
 
     public static void main(String[] args) {
         int[] arr = {2,4,6,8,10,12,14};
-        int key=2;
-        int index = linearSearch(arr, key);
-        //int index = binarySearch(arr, key);
+        int[] arr2={4,  5, 6, 7, 0, 1, 2};
+        int key=0;
+        //int index = linearSearch(arr, key);
+        int index = binarySearch(arr2, key);
         System.out.println("Value found at index "+index);
         //reverseArray(arr);
 //        for (int i=0;i<arr.length;i++) {
@@ -16,11 +17,14 @@ public class SearchAlgos {
         //printSubArrays(arr);
         //printMaxAndMinSumInSubArrays(arr);
         //printMaxAndMinUsingPrefixSum(arr);
-        int[] nums={1,1,1,2};
-        int k =removeDuplicates(nums);
-        System.out.println("k:"+k);
+//        int[] nums={1,1,1,2};
+//        int k =removeDuplicates(nums);
+//        System.out.println("k:"+k);
         //leftRotatedArray(arr);
         //leftRotatedArrayBySDigits(arr,3);
+//        int maxSum = kadaneAlgorithm(arr);
+//        System.out.println("maxSum using kadane:"+maxSum);
+        printMaxSubArrayForGivenKValue(arr2, 1);
     }
 
     static int linearSearch(int[] arr, int k) {
@@ -185,5 +189,34 @@ public class SearchAlgos {
         for(int i=0;i<arr.length;i++){
             System.out.print(arr[i]+ " ");
         }
+    }
+
+    static int kadaneAlgorithm(int[] arr) {
+        int currSum=0;
+        int maxSum = Integer.MIN_VALUE;
+        for(int i=0;i<arr.length;i++) {
+            currSum = currSum+arr[i];
+            if(currSum<0){
+                currSum=0;
+            }
+            maxSum = Math.max(currSum,maxSum);
+        }
+        return maxSum;
+    }
+
+    static void printMaxSubArrayForGivenKValue(int[] arr, int k) {
+        int sum=0;
+        int count=0;
+        for(int i=0;i<arr.length;i++) {
+            int j=i;
+            while(j<arr.length){
+                sum=sum+arr[j];
+                if(sum==k){
+                    count=Math.max(count, j-i+1);
+                }
+                j++;
+            }
+        }
+        System.out.println("longest subarray with sum k is "+count);
     }
 }
