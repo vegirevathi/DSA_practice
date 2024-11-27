@@ -57,6 +57,14 @@ public class StringPrbms {
         return sb.toString();
     }
 
+    static boolean rotateString(String s, String goal){
+        String s1=s.concat(s);
+        if(s.length()!=goal.length()){
+            return false;
+        }
+        return s1.contains(goal);
+    }
+
     static String longestCommonPrefix2(String[] arr){
         Arrays.sort(arr);
         String first = arr[0];
@@ -72,9 +80,11 @@ public class StringPrbms {
     }
 
     public static void main(String[] args){
+        boolean output=rotateString("abcde", "cdeab");
+        System.out.print("Is rotated string "+output);
 
-        String[] input={"flower","flow","flight"};
-        System.out.print(longestCommonPrefix2(input));
+//        String[] input={"flower","flow","flight"};
+//        System.out.print(longestCommonPrefix2(input));
 //        String output=removeOuterParanthesis("(()())(())");
 //        System.out.print("String after removing outer paranthesis "+output);
 
