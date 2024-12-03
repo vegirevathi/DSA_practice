@@ -1,14 +1,12 @@
-import java.util.Arrays;
-
 public class SearchAlgos {
 
     public static void main(String[] args) {
-        int[] arr = {2,4,6,8,10,12,14};
-        int[] arr2={4,  5, 6, 7, 0, 1, 2};
+        int[] arr = {2,4,6,8,8,8,8,10,12,14};
+        int[] arr2={1,3,5,6};
         int key=0;
         //int index = linearSearch(arr, key);
-        int index = binarySearch(arr2, key);
-        System.out.println("Value found at index "+index);
+//        int index = binarySearch(arr2, key);
+//        System.out.println("Value found at index "+index);
         //reverseArray(arr);
 //        for (int i=0;i<arr.length;i++) {
 //            System.out.print(arr[i]+" ");
@@ -24,8 +22,69 @@ public class SearchAlgos {
         //leftRotatedArrayBySDigits(arr,3);
 //        int maxSum = kadaneAlgorithm(arr);
 //        System.out.println("maxSum using kadane:"+maxSum);
-        printMaxSubArrayForGivenKValue(arr2, 1);
+        //printMaxSubArrayForGivenKValue(arr2, 1);
+//        int value = searchInsertPosition(arr2, 0);
+//        System.out.println("insert index position "+value);
+//        int value = lastOccurrence(arr, 8);
+//        System.out.println("last occurrence position "+value);
+        int value = firstOccurrence(                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            arr, 8);
+        System.out.println("first occurrence position "+value);
     }
+
+    static int searchInsertPosition(int[] arr, int k){
+        int start=0;
+        int end=arr.length-1;
+        int result= arr.length;
+        while(start<=end){
+            int mid=(start+end)/2;
+            if(arr[mid]>=k){
+                result= mid;
+                end=mid-1;
+            } else {
+                start=mid+1;
+            }
+        }
+        return result;
+    }
+
+    static int lastOccurrence(int[] arr, int k){
+        int start=0;
+        int end=arr.length-1;
+        int result= -1;
+        while(start<=end){
+            int mid=start+(end-start)/2;
+            if(arr[mid]==k){
+                result=mid;
+                start=mid+1;
+            }
+            else if(arr[mid]>k){
+                end=mid-1;
+            } else {
+                start=mid+1;
+            }
+        }
+        return result;
+    }
+
+    static int firstOccurrence(int[] arr, int k){
+        int start=0;
+        int end=arr.length-1;
+        int result= -1;
+        while(start<=end){
+            int mid=start+(end-start)/2;
+            if(arr[mid]==k){
+                result=mid;
+                end=mid-1;
+            }
+            else if(arr[mid]>k){
+                end=mid-1;
+            } else {
+                start=mid+1;
+            }
+        }
+        return result;
+    }
+
 
     static int linearSearch(int[] arr, int k) {
         for(int i=0;i<arr.length;i++) {
