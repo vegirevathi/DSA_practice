@@ -142,6 +142,33 @@ public class RecursionEx {
         return binarySearch(arr, start, end, k);
     }
 
+
+    static void removeDuplicates(String str, int index, StringBuilder sb, boolean map[]){
+        if(index==str.length()){
+            System.out.println(sb);
+            return;
+        }
+        char currChar=str.charAt(index);
+        if(map[currChar-'a']==true){
+            removeDuplicates(str,index+1,sb,map);
+        } else{
+            map[currChar-'a']=true;
+            sb.append(currChar);
+            removeDuplicates(str, index+1, sb, map);
+        }
+    }
+
+    static int friendsPairing(int n){
+        if(n==1||n==2){
+            return n;
+        }
+        int fnm1=friendsPairing(n-1);
+        int fnm2=friendsPairing(n-2);
+        int pairways=(n-1)*fnm2;
+        int totalWays=fnm1+pairways;
+        return totalWays;
+    }
+
     public static void main(String[] args){
         int k=1;
         int n=10;
@@ -166,7 +193,11 @@ public class RecursionEx {
 //        for(int i=0;i<arr.length;i++){
 //            System.out.println(arr[i]);
 //        }
-        System.out.println(binarySearch(arr, 0, arr.length-1, 7));
+//        //System.out.println(binarySearch(arr, 0, arr.length-1, 7));
+//        String str="apnacollege";
+//        removeDuplicates(str, 0, new StringBuilder(), new boolean[26]);
+
+        System.out.println("total ways "+friendsPairing(3));
 
     }
 
